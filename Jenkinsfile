@@ -22,5 +22,10 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy war to GCS') {
+            steps {
+                googleStorageUpload bucket: 'gs://test1-aidi-demo-post', credentialsId: 'aidi-postdemo', pattern: 'target/*.war'
+            }
+        }
     }
 }
