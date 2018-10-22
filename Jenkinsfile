@@ -22,6 +22,12 @@ pipeline {
                 }
             }
         }
+        
+        stage ("Deploy to GCS") {
+            steps {
+                googleStorageUpload bucket: 'gs://jenkins-pipeline-test', credentialsId: 'archcertificationpro', pattern: 'target/*.war'
+            }
+        }
     
     }
 }
