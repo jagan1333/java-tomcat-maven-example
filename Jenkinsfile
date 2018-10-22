@@ -22,11 +22,6 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Tomact') {
-            steps {
-                sh 'cp /Users/Shared/Jenkins/Home/workspace/mvn_pipeline/target/*.war /Users/jagannath.s/Documents/apache-tomcat-8.5.34/webapps/'
-            }
-        }
     
     }
 }
