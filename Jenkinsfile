@@ -1,15 +1,32 @@
 pipeline {
-  agent any
-  stages {
-    stage('compile') {
-      steps {
-        withMaven(globalMavenSettingsConfig: 'maven', jdk: 'java1.8', maven: 'maven', mavenOpts: 'mvn clean compile')
-      }
+    agent any
+    stages {
+        stage ('Compile Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
+        stage ('Testing Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn test'
+                }
+            }
+        } 
+        stage ('Package Stage') {
+            steps {
+                withMaven(maven : 'maven') {
+                    sh 'mvn package'
+                }
+            }
+        }
+        stage ("Deploy to GCS") {
+            steps {
+                googleStorageUpload bucket: 'gs://jenkins-pipeline-test', credentialsId: 'archcertificationpro', pattern: 'target/*.war'
+            }
+        }
+    
     }
-    stage('print') {
-      steps {
-        echo 'Hello'
-      }
-    }
-  }
 }
