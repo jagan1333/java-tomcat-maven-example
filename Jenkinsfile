@@ -24,7 +24,7 @@ pipeline {
         }
         stage ('Deploy to Tomact') {
             steps {
-                sh 'sudo cp /Users/Shared/Jenkins/Home/workspace/mvn_pipeline/target/*.war /Users/jagannath.s/Documents/apache-tomcat-8.5.34/webapps'
+                sh 'cp /Users/Shared/Jenkins/Home/workspace/mvn_pipeline/target/*.war /Users/jagannath.s/Documents/apache-tomcat-8.5.34/webapps/'
             }
         }
     
