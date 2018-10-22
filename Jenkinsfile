@@ -24,7 +24,7 @@ pipeline {
         }
         stage ('Deploy to Tomact') {
             steps {
-                sh 'scp /target/*.war /Users/jagannath.s/Documents/apache-tomcat-8.5.34/webapps'
+                sh 'cp /target/*.war /Users/jagannath.s/Documents/apache-tomcat-8.5.34/webapps'
             }
         }
     
